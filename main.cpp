@@ -7,6 +7,11 @@ class Matrix{
 private:
     int rows = 0, cols = 0;
     double** data;
+    void createMatrix(){
+        data = new double*[rows];
+        for(int i = 0; i < rows; i++)
+            data[i] = new double[cols];
+    }
 public:
     Matrix(){};
 
@@ -15,13 +20,7 @@ public:
         setCols(cols);
         createMatrix();
     }
-
-    void createMatrix(){
-        data = new double*[rows];
-        for(int i = 0; i < rows; i++)
-            data[i] = new double[cols];
-    }
-
+    
     void setRows(int rows){
         if(rows > 0)
             this->rows = rows;
