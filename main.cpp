@@ -5,14 +5,14 @@ using namespace std;
 
 class Matrix{
 private:
-    int rows, cols;
+    int rows = 0, cols = 0;
     double** data;
 public:
     Matrix(){};
 
     Matrix(int rows, int cols){
-        this->rows = rows;
-        this->cols = cols;
+        setRows(rows);
+        setCols(cols);
         createMatrix();
     }
 
@@ -23,7 +23,9 @@ public:
     }
 
     void setRows(int rows){
-        this->rows = rows;
+        if(rows > 0)
+            this->rows = rows;
+        else cout << "Количество строк не может быть отрицательным." << endl;
     }
 
     int getRows(){
@@ -31,7 +33,9 @@ public:
     }
 
     void setCols(int cols){
-        this->cols = cols;
+        if (cols > 0)
+            this->cols = cols;
+        else cout << "Количество столбцов не может быть отрицательным." << endl;
     }
 
     int getCols(){
@@ -43,6 +47,8 @@ public:
     }
 
     Matrix& operator = (const Matrix& m){
+        if (this == &m)
+            return *this;
         rows = m.rows;
         cols = m.cols;
 
